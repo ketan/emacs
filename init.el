@@ -1,12 +1,14 @@
 (require 'cl)
 (when
-  (load (expand-file-name "~/.emacs.d/package.el"))
-  (load (expand-file-name "~/.emacs.d/melpa.el"))
+  (load (expand-file-name "package.el" (file-name-directory load-file-name)))
+  (load (expand-file-name "melpa.el" (file-name-directory load-file-name)))
   (package-initialize))
 
-(add-to-list 'load-path (expand-file-name "~/.emacs.d"))
+(add-to-list 'load-path (expand-file-name "." (file-name-directory load-file-name)))
 
 (require 'package)
+(setq package-user-dir (concat (expand-file-name "." (file-name-directory load-file-name)) "/elpa"))
+
 (add-to-list 'package-archives
              '("elpa" . "http://tromey.com/elpa/"))
 (add-to-list 'package-archives
@@ -69,6 +71,6 @@
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
 ; Separate custom file
-(setq custom-file "~/.emacs.d/custom.el")
+(setq custom-file (expand-file-name "package.el" (file-name-directory load-file-name)))
 (load custom-file 'noerror)
 
