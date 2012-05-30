@@ -74,6 +74,11 @@
 
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
+; (setq auto-mode-alist      (cons '("\\.md" . markdown-mode) auto-mode-alist))
+
+(add-to-list 'auto-mode-alist '("\\.text" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md" . markdown-mode))
+
 ; Separate custom file
 (setq custom-file (expand-file-name "custom.el" (file-name-directory load-file-name)))
 (load custom-file 'noerror)
