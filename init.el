@@ -10,7 +10,9 @@
 (setq package-user-dir (concat (expand-file-name "." (file-name-directory load-file-name)) "/elpa"))
 
 (add-to-list 'package-archives
-             '("elpa" . "http://tromey.com/elpa/"))
+             '("elpa" . "http://tromey.com/elpa/") t)
+(add-to-list 'package-archives
+             '("gnu" . "http://elpa.gnu.org/packages/") t)
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (add-to-list 'package-archives
@@ -22,17 +24,19 @@
 
 ;; Add in your own as you wish:
 (defvar my-packages '(starter-kit starter-kit-ruby starter-kit-js starter-kit-lisp starter-kit-bindings
-                                  yaml-mode ruby-mode rinari flymake-ruby
+                                  yaml-mode
+                                  ruby-mode rinari flymake-ruby ruby-end ruby-tools rspec-mode ruby-block ruby-test-mode rvm
                                   coffee-mode flymake-coffee
                                   css-mode flymake-css flymake-csslint
                                   ir-black-theme
                                   flymake-jshint flymake-jslint
-                                  flymake-sass
+                                  haml-mode sass-mode scss-mode flymake-sass
                                   flymake-shell
                                   apache-mode
                                   full-ack save-visited-files
                                   projectile ; required by helm-projectile
                                   helm helm-projectile
+                                  markdown-mode textile-mode
                                   )
   "A list of packages to ensure are installed at launch.")
 
@@ -61,16 +65,16 @@
 ; additional stuff to find projectile
 (eval-after-load 'projectile
                  '(progn
-                    (setq projectile-ignored-directories 
-                          (append projectile-ignored-directories '(".git" ".bundle" "tmp" "log")))
-                    (setq projectile-ignored-file-extensions 
-                          (append projectile-ignored-file-extensions '("gem" "jar" "o" "obj" "rbc")))
+                    (setq projectile-ignored-directories
+                          (append projectile-ignored-directories '(".git" ".bundle" "tmp" "log" "coverage")))
+                    (setq projectile-ignored-file-extensions
+                          (append projectile-ignored-file-extensions '("gem" "jar" "o" "obj" "rbc" "DS_Store")))
                     )
                  )
 
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
 ; Separate custom file
-(setq custom-file (expand-file-name "package.el" (file-name-directory load-file-name)))
+(setq custom-file (expand-file-name "custom.el" (file-name-directory load-file-name)))
 (load custom-file 'noerror)
 
