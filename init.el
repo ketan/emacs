@@ -59,6 +59,11 @@
 (require 'save-visited-files)
 (save-visited-files-mode t)
 
+
+(require 'flymake)
+(require 'flymake-ruby)
+(add-hook 'ruby-mode-hook 'flymake-ruby-load)
+
 ; set the theme
 (load-theme 'ir-black)
 
