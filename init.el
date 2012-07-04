@@ -59,13 +59,16 @@
 (require 'save-visited-files)
 (save-visited-files-mode t)
 
-
+(require 'rspec-mode)
 (require 'flymake)
 (require 'flymake-ruby)
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
 
+(require 'helm-projectile)
+
 ; set the theme
-(load-theme 'ir-black)
+; (require 'color-theme-ir-black)
+(load-theme 'ir-black t)
 
 ; additional stuff to find projectile
 (eval-after-load 'projectile
@@ -78,6 +81,8 @@
                  )
 
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "s-t") 'helm-projectile)
+(global-set-key (kbd "s-F") 'ack)
 
 ; (setq auto-mode-alist      (cons '("\\.md" . markdown-mode) auto-mode-alist))
 
@@ -87,4 +92,3 @@
 ; Separate custom file
 (setq custom-file (expand-file-name "custom.el" (file-name-directory load-file-name)))
 (load custom-file 'noerror)
-
